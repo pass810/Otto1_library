@@ -51,8 +51,8 @@ void obstacleDetector(void *arg) {
   while (1) {
     // Compute distance
     float distance = US.getDistance();
-    Serial.print(distance);
-    Serial.println("cm");
+    //Serial.print(distance);
+    //Serial.println("cm");
     if (distance < 15) {
       obstacleDetected = true;
       //Serial.println ("Obstacle Detected! Avoid collision");
