@@ -1,0 +1,41 @@
+#######################################
+# Syntax Coloring Map For OttoESP32
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+OttoESP32	KEYWORD1
+US100	KEYWORD1
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+init	KEYWORD2
+home	KEYWORD2
+jump	KEYWORD2
+walk	KEYWORD2
+turn	KEYWORD2
+bend	KEYWORD2
+shakeLeg	KEYWORD2
+updown	KEYWORD2
+swing	KEYWORD2
+tiptoeSwing	KEYWORD2
+jitter	KEYWORD2
+ascendingTurn	KEYWORD2
+moonwalker	KEYWORD2
+crusaito	KEYWORD2
+flapping	KEYWORD2
+playGesture	KEYWORD2
+putMouth	KEYWORD2
+putAnimationMouth	KEYWORD2
+oled_print	KEYWORD2
+sing	KEYWORD2
+getDistance	KEYWORD2
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
