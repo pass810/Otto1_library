@@ -124,7 +124,7 @@ void OttoESP32::jump(int steps, int T ) {
 //--    * T : Period
 //--    * Dir: Direction: FORWARD / BACKWARD
 //---------------------------------------------------------
-void OttoESP32::walk(int steps,int T,  int dir) {
+void OttoESP32::walk(int steps, int T,  int dir) {
   //  int A[6] = {30, 28, 20, 18, -20, -20};
   //  int O[6] = {0, 0, 4, -4, -70, 70};
   int A[6] = {30, 30, 20, 20, -20, -20};
@@ -140,7 +140,7 @@ void OttoESP32::walk(int steps,int T,  int dir) {
 //--   * T: Period
 //--   * Dir: Direction: LEFT / RIGHT
 //---------------------------------------------------------
-void OttoESP32::turn(int steps,int T,  int dir) {
+void OttoESP32::turn(int steps, int T,  int dir) {
   int A[6] = {30, 30, 20, 20, -20, -20};
   int O[6] = {0, 0, 3, -3, -70, 70};
   double phase_diff[6] = {0, 0, DEG2RAD(-90), DEG2RAD(-90), 0, 0};
@@ -175,7 +175,7 @@ void OttoESP32::bend (int steps, int T, int dir) {
   if (dir == -1)
   {
     bend1[2] = 180 - 35;
-    bend1[3] = 180 - 70; //Not 65. Otto is unbalanced 60->62
+    bend1[3] = 180 - 70; //Not 65. Otto is unbalanced 60->62->70
     bend1[4] = 45;
     bend1[5] = 180;
     bend2[2] = 180 - 105;
@@ -210,7 +210,7 @@ void OttoESP32::shakeLeg (int steps, int T, int dir) {
   int numberLegMoves = 2;
 
   //Parameters of all the movements. Default: Right leg
-  int shake_leg1[6] = {90, 90, 70, 35, 0, 150}; //58->70
+  int shake_leg1[6] = {90, 90, 70, 35, 0, 150}; //58->68
   int shake_leg2[6] = {90, 90, 70, 120, 0, 150};
   int shake_leg3[6] = {90, 90, 70, 60, 0, 150};
   int homes[6] = {90, 90, 90, 90, 0, 180};
@@ -425,6 +425,43 @@ void OttoESP32::flapping(float steps, int T, int h, int dir) {
   //-- Let's execute the servos!
   execute(A, O, T, phase_diff, steps);
 }
+
+//---------------------------------------------------------
+//-- OttoESP32: handup
+//---------------------------------------------------------
+void OttoESP32::handsup() {
+  int homes[6] = {90, 90, 90, 90, 160, 20}; //
+  moveServos(500, homes);  //Move the servos in half a second
+}
+
+//---------------------------------------------------------
+//-- OttoESP32: handwave
+//--  Parameters:
+//--    dir: direction: LEFT,RIGHT
+//---------------------------------------------------------
+void OttoESP32::handwave(int dir) {
+  //-- Wave , either left or right
+  //--
+  if (dir == RIGHT)
+  {
+    int A[6] = {0, 0, 0, 0, 0, 30}; // right hand wave
+    int O[6] = {0, 0, 0, 0, -40, -30};
+    double phase_diff[6] = {0, 0, 0, 0, 0,DEG2RAD(0)};
+    //-- Let's oscillate the servos!
+    execute(A, O, 500, phase_diff, 5);
+  }
+  if (dir == LEFT)
+  {
+
+    int A[6] = {0, 0, 0, 0, 30,0}; // left hand wave
+    int O[6] = {0, 0, 0, 0, 60, 40};
+    double phase_diff[6] = {0, 0, 0, 0,  DEG2RAD(0),0};
+    //-- Let's oscillate the servos!
+    execute(A, O, 500, phase_diff, 5);
+  }
+}
+
+
 //*********************************************************
 //-- OttoESP32: Gesture
 //*********************************************************
@@ -432,9 +469,9 @@ void OttoESP32::playGesture(int gesture) {
 
   int sadPos[6] =      {110, 70, 20, 160, 0, 180};
   int bedPos[6] =      {100, 80, 60, 120, 0, 180};
-  int fartPos_1[6] =   {90, 90, 135, 110, 45, 180}; //rightBend 122->110 145->135
-  int fartPos_2[6] =   {90, 90, 85, 110, 45, 180};
-  int fartPos_3[6] =   {90, 90, 135, 85, 0, 180};
+  int fartPos_1[6] =   {90, 90, 145, 110, 45, 180}; //rightBend 122->110 145->135
+  int fartPos_2[6] =   {90, 90, 80, 110, 45, 180};
+  int fartPos_3[6] =   {90, 90, 130, 85, 0, 180};
   int confusedPos[6] = {110, 70, 90, 90, 45, 135};
   int angryPos[6] =    {90, 90, 70, 110, 0, 180};
   int headLeft[6] =    {110, 110, 90, 90, 45, 180};

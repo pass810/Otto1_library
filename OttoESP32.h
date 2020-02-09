@@ -54,6 +54,8 @@ class OttoESP32 {
     void moonwalker(float steps = 1, int T = 900, int h = 20, int dir = LEFT);
     void crusaito(float steps = 1,  int T = 900, int h = 20, int dir = FORWARD);
     void flapping(float steps = 1, int T = 1000, int h = 20, int dir = FORWARD);
+    void handsup();
+    void handwave(int dir = LEFT);
     //Gestures
     void playGesture(int gesture);    
     //Mouth
